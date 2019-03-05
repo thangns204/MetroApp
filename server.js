@@ -1,11 +1,15 @@
 var express = require('express');
-var bodyParser = require('body-parser');
-
 var app = express();
+var bodyParser = require('body-parser'); 
+var passport = require('passport');
+var session = require('express-session');
+
+
+
 app.set('view engine', 'ejs');
+app.use(express.static("public"));
 
-require('./routes/index.js')(app);
-
+require('./config/passport.js')(passport);
 
 //DataBase
 var mongoose = require('mongoose');
@@ -17,19 +21,26 @@ var mongoose = require('mongoose');
   
  });
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
 
-// parse application/json
-app.use(bodyParser.json())
+//Body-parser
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+//init passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 
+//init for session
+
+app.use(session({
+	secret:'something',
+	cookie: {
+		maxAge: 1000 * 50 * 5
+	}
+}));
 
 
-// POST /login gets urlencoded bodies
-app.post('/signup', function (req, res) {
-  if (!req.body) return res.sendStatus(400)
-  res.send('welcome, ' + req.body);
-})
+require('./routes/index.js')(app, passport);
 
 app.listen(3000);
