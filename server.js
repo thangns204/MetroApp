@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser'); 
 var passport = require('passport');
 var session = require('express-session');
+var request = require('request');
 
 
 
@@ -41,6 +42,6 @@ app.use(session({
 }));
 
 
-require('./routes/index.js')(app, passport);
+require('./routes/index.js')(app, passport, request);
 
 app.listen(3000);

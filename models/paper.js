@@ -1,8 +1,8 @@
-let mongoose = require('mongoose');
+	let mongoose = require('mongoose');
 
 let PaperSchema = new mongoose.Schema({
 	id: {
-		type:Integer,
+		type:Number,
 		unique: true,
 		required:true,
 		trim:true
@@ -28,7 +28,7 @@ let PaperSchema = new mongoose.Schema({
 	},
 	
 	key: {
-		type:Integer,
+		type:Number,
 		unique:true,
 		require:true,
 		trim:true
