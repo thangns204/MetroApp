@@ -1,0 +1,6 @@
+: check 2 %;
+: is_even check if ." even" else . " odd" then ;
+5 is_even
+even
+6 is_even
+odd

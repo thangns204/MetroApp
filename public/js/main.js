@@ -1,6 +1,10 @@
 $(document).ready(function() {
   "use strict";
 
+  function decode(str) {
+    return atob(str);
+  }
+
   var window_width = $(window).width(),
     window_height = window.innerHeight,
     header_height = $(".default-header").height(),
@@ -72,6 +76,9 @@ $(document).ready(function() {
   } else if ($("#mobile-nav, #mobile-nav-toggle").length) {
     $("#mobile-nav, #mobile-nav-toggle").hide();
   }
+
+  //show less
+ 
 
   // Smooth scroll for the menu and links with .scrollto classes
   $(".nav-menu a, #mobile-nav a, .scrollto").on("click", function() {

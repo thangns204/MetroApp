@@ -5,6 +5,7 @@ var passport = require('passport');
 var session = require('express-session');
 var request = require('request');
 
+//mail nodejs
 
 
 app.set('view engine', 'ejs');
@@ -14,13 +15,19 @@ require('./config/passport.js')(passport);
 
 //DataBase
 var mongoose = require('mongoose');
- mongoose.connect('mongodb://localhost:27017/loginDB', function (err) {
-  
+mongoose.connect("mongodb://localhost:27017/loginDB", { useNewUrlParser: true }, (err) => {
+
     if (err) throw err;
+//    mongoose.connection.db.listCollections().toArray(function (err, names) {
+  //      console.log(names); // [{ name: 'dbname.myCollection' }]
+   //     module.exports.Collection = names;
+    //});
   
     console.log('Successfully connected');
-  
- });
+});
+
+//Will take control of request tarting with path /api
+
 
 
 //Body-parser
